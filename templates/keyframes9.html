@@ -5,44 +5,46 @@
   </head>
   <body style="background-color:white;" >
 	<script type="text/javascript" src="prism.js"></script>
-	
+
 	<pre class="language-python"><code>
-	
 
 
-"""
-    Bubble Sort
-    -----------
-    A naive sorting that compares and swaps adjacent elements.
 
-    Time Complexity: O(n**2)
-
-    Space Complexity: O(1) Auxiliary
-
-    Stable: Yes
-
-    Psuedo code: http://en.wikipedia.org/wiki/Bubble_sort
-
-"""
+n = raw_input()
 
 
-def sort(seq):
-    """
-    Takes a list of integers and sorts them in ascending order. This sorted
-    list is then returned.
+l = len(n)
+c = 0
+i = 0
 
-    :param seq: A list of integers
-    :rtype: A list of sorted integers
-    """
-    L = len(seq)
-    for i in range(L):
-        for n in range(1, L - i):
-            if seq[n] < seq[n - 1]:
-                seq[n - 1], seq[n] = seq[n], seq[n - 1]
-    return seq
-	
-	
-	
-</code></pre>
+
+for i in range(l):
+    if n[i] == '0':
+        c = c+6
+    elif n[i] == '1':
+        c= c+2
+        
+    elif n[i] == '2':
+        c= c+5
+    elif n[i] == '3':
+        c= c+5
+    elif n[i] == '4':
+        c= c+4
+    elif n[i] == '5':
+        c= c+5
+    elif n[i] == '6':
+        c= c+6
+    elif n[i] == '7':
+        c= c+3
+    elif n[i] == '8':
+        c= c+7
+    elif n[i] == '9':
+        c= c+6
+        
+print c
+    
+    
+        </code></pre>
   </body>
 </html>		
+    

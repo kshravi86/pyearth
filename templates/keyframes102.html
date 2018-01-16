@@ -5,48 +5,37 @@
   </head>
   <body style="background-color:white;" >
 	<script type="text/javascript" src="prism.js"></script>
-	
+
 	<pre class="language-python"><code>
-	
 
 
 
 
-from collections import deque
 
 
-def int_to_bytes_big_endian(num):
-    bytestr = deque()
-    while num > 0:
-        # list.insert(0, ...) is inefficient
-        bytestr.appendleft(num & 0xff)
-        num >>= 8
-    return bytes(bytestr)
+# Dot and Cross
+
+# Task
+# You are given two arrays A and B. Both have dimensions of NxN. 
+# Your task is to compute their matrix product.
+
+# Input Format
+# The first line contains the integer N. 
+# The next N lines contains N space separated integers of array A. 
+# The following N lines contains N space separated integers of array B.
+
+# Output Format
+# Print the matrix multiplication of A and B.
 
 
-def int_to_bytes_little_endian(num):
-    bytestr = []
-    while num > 0:
-        bytestr.append(num & 0xff)
-        num >>= 8
-    return bytes(bytestr)
+import numpy
+
+N = int(raw_input())
+A = numpy.array([raw_input().split() for i in range(N)], int)
+B = numpy.array([raw_input().split() for i in range(N)], int)
+print numpy.dot(A, B)
 
 
-def bytes_big_endian_to_int(bytestr):
-    num = 0
-    for b in bytestr:
-        num <<= 8
-        num += b
-    return num
-
-
-def bytes_little_endian_to_int(bytestr):
-    num = 0
-    e = 0
-    for b in bytestr:
-        num += b << e
-        e += 8
-    return num
-     </code></pre>
+ </code></pre>
   </body>
 </html>		

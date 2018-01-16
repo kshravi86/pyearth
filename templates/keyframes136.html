@@ -1,14 +1,13 @@
+
 <!DOCTYPE html>
 <html>
-<head>
-<link href="prism.css" rel="stylesheet">
-</head>
-<body style="background-color:white;" >
-<script type="text/javascript" src="prism.js"></script>
+  <head>
+    <link href="prism.css" rel="stylesheet">
+  </head>
+  <body style="background-color:white;" >
+	<script type="text/javascript" src="prism.js"></script>
 
-<pre class="language-java"><code>
-
-
+	<pre class="language-python"><code>
 
 
 
@@ -16,81 +15,49 @@
 
 
 
+# Inner and Outer
 
-/* Java Deque
+# inner
+# The inner tool returns the inner product of two arrays.
 
-In computer science, a double-ended queue (dequeue, often abbreviated to deque, pronounced deck) is an 
-abstract data type that generalizes a queue, for which elements can be added to or removed from either the 
-front (head) or back (tail).
+# import numpy
 
-Deque interfaces can be implemented using various types of collections such as LinkedList or ArrayDeque 
-classes. For example, deque can be declared as:
+# A = numpy.array([0, 1])
+# B = numpy.array([3, 4])
 
-Deque deque = new LinkedList<>();
-or
-Deque deque = new ArrayDeque<>();
-You can find more details about Deque here.
+# print numpy.inner(A, B)     #Output : 4
 
-In this problem, you are given N integers. You need to find the maximum number of unique integers among 
-all the possible contiguous subarrays of size M.
+# outer
+# The outer tool returns the outer product of two arrays.
 
-Note: Time limit is 3 second for this problem.
+# import numpy
 
-Input Format
+# A = numpy.array([0, 1])
+# B = numpy.array([3, 4])
 
-The first line of input contains two integers N and M: representing the total number of integers and 
-the size of the subarray, respectively. The next line contains N space separated integers.
+# print numpy.outer(A, B)     #Output : [[0 0]
+#                             #          [3 4]]
 
-Constraints
+# Task
+# You are given two arrays: A and B. 
+# Your task is to compute their inner and outer product.
 
-1≤N≤100000
-1≤M≤100000
-M≤N
-The numbers in the array will range between [0,10000000].
+# Input Format
+# The first line contains the space separated elements of array A. 
+# The second line contains the space separated elements of array B.
 
-Output Format
+# Output Format
+# First, print the inner product. 
+# Second, print the outer product.
 
-Print the maximum number of unique integers among all possible contiguous subarrays of size M separated by a space.
 
-Sample Input
+import numpy
 
-6 3
-5 3 5 2 3 2
+A = numpy.array(raw_input().split(), int)
+B = numpy.array(raw_input().split(), int)
 
-Sample Output
-
-3
-
-*/
-
-import java.util.*;
-public class test {
-   public static void main(String[] args) {
-            
-       Scanner in = new Scanner(System.in);
-       Deque deque = new ArrayDeque&ltInteger&gt();
-       int n = in.nextInt();
-       int m = in.nextInt();
-       int maxUnique = 0;
-       for (int i = 0; i &lt n; i++) {
-            int num = in.nextInt();
-            if(i == 0){
-                deque.add(num);  
-                maxUnique++;
-            }else{
-                if(deque.size() == m){
-                    deque.removeFirst();
-                }
-                if(!deque.contains(num) && maxUnique&ltm){
-                    maxUnique++;
-                }
-                deque.addLast(num);
-            }
-       }
-       System.out.println(""+maxUnique);
-    }
-}
-
+print numpy.inner(A, B)
+print numpy.outer(A, B)
 
 
         </code></pre>

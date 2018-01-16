@@ -1,79 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link href="prism.css" rel="stylesheet">
-</head>
-<body style="background-color:white;" >
-<script type="text/javascript" src="prism.js"></script>
+  <head>
+    <link href="prism.css" rel="stylesheet">
+  </head>
+  <body style="background-color:white;" >
+	<script type="text/javascript" src="prism.js"></script>
 
-<pre class="language-java"><code>
-
-
+	<pre class="language-python"><code>
 
 
 
 
 
-/*
-Priyanka and Toys
 
-Little Priyanka visited a kids' shop. There are N toys and their weight is represented by an array W=[w1,w2,…,wN]. 
-Each toy costs 1 unit, and if she buys a toy with weight w′, then she can get all other toys whose weight 
-lies between [w′,w′+4] (both inclusive) free of cost.
+from __future__ import print_function, division
+import sys, math
 
-Input Format
+def fib( N ):
+    fib_list = [0, 1]
+    while len( fib_list ) < N:
+        fib_list.append( fib_list[-1] + fib_list[-2] )
 
-The first line contains an integer N i.e. number of toys.
-Next line will contain N integers, w1,w2,…,wN, representing the weight array.
+    if N <= 0:
+        fib_list = []
 
-Output Format
+    elif N == 1:
+        fib_list = fib_list[:N]
 
-Minimum units with which Priyanka could buy all of toys.
 
-Constraints 
-1≤N≤105
-0≤wi≤104,where i∈[1,N]
-Sample Input
+    return fib_list
 
-5
-1 2 3 17 10
-Sample Output
+def cube_it( fib_list ):
+    return list(map(lambda x: int(math.pow(x, 3)), fib_list))
 
-3
-*/
+def main():
+    # Get the number of test cases.
+    T = int(input())
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+    fib_list = fib( T )
+    fib_list = cube_it( fib_list )
 
-public class PriyankaAndToys {
+    print( fib_list )
 
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        int arraySize = sc.nextInt();
-        int[]numArray = new int[arraySize];
-        for(int i = 0;i<arraySize;i++){
-            numArray[i] = sc.nextInt();
-        }
-       
-        Arrays.sort(numArray);
-        
-        int count = 1;
-        int currentToy=numArray[0];
-        for(int i = 1;i<numArray.length;i++){
-            if(numArray[i]>currentToy+4){
-                count++;
-                currentToy=numArray[i];
-            }
-        }
-        System.out.println(count);
-    }
-}
-
+if __name__ == '__main__':
+    main()
+    
+    
+    
         </code></pre>
   </body>
 </html>		
-

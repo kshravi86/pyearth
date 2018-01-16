@@ -5,48 +5,46 @@
   </head>
   <body style="background-color:white;" >
 	<script type="text/javascript" src="prism.js"></script>
-	
-	<pre class="language-python"><code>
-	
+
+	<pre  ng-prism  class="language-python"><code>
+		
 
 
-"""
-    Binary Search
-    -------------
-    Recursively partitions the list until the `key` is found.
+i = 0
+i = raw_input("Enter number of test cases:")
+x=[]
 
-    Time Complexity:  O(lg n)
+len1=[]
+len2=[]
+y="a"
+for n in range(int(i)):
+    y = raw_input("Enter website:")
+    x.append(y)
 
-    Psuedo Code: http://en.wikipedia.org/wiki/Binary_search
+x1=x
+    
+n=0    
+for j in range(len(x)):
+    x[j] = x[j][4:]
+    x[j] = x[j][:-4]
+    len1.append(int(len(x[j])))
+    x1[j] = (x[j].replace('o',''))
+    x1[j] = (x[j].replace('e',''))
+    x1[j] =  (x[j].replace('i',''))
+    x1[j] =  (x[j].replace('a',''))
+    x1[j] =  (x[j].replace('u',''))    
+    len2.append(int(len(x1[j])))
 
-"""
+for j in range(len(x)):
+    len1[j] = int(len1[j])+8
+    len2[j] = int(len2[j])+4
+    
 
 
-def search(seq, key):
-    """
-    Takes a list of integers and searches if the `key` is contained within
-    the list.
-
-    :param seq: A list of integers
-    :param key: The integer to be searched for
-    :rtype: The index of where the `key` is located in the list. If `key` is
-            not found then False is returned.
-    """
-
-    lo = 0
-    hi = len(seq) - 1
-
-    while hi >= lo:
-        mid = lo + (hi - lo) // 2
-        if seq[mid] < key:
-            lo = mid + 1
-        elif seq[mid] > key:
-            hi = mid - 1
-        else:
-            return mid
-    return False
-	
-	
-</code></pre>
+for j in range(len(len1)):
+    print str(len2[j]) +str("/") + str(len1[j])
+    
+    
+        </code></pre>
   </body>
 </html>		

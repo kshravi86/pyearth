@@ -10,70 +10,57 @@
 	
 
 
-# Time:  O(logn) = O(1)
-# Space: O(1)
-#
-# Reverse digits of an integer.
-# 
-# Example1: x = 123, return 321
-# Example2: x = -123, return -321
-# 
-# click to show spoilers.
-# 
-# Have you thought about this?
-# Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!
-# 
-# If the integer's last digit is 0, what should the output be? ie, cases such as 10, 100.
-# 
-# Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, 
-# then the reverse of 1000000003 overflows. How should you handle such cases?
-# 
-# Throw an exception? Good, but what if throwing an exception is not an option? 
-# You would then have to re-design the function (ie, add an extra parameter).
+
+"""
+You have a record of N students. Each record contains the student's name, 
+and their percent marks in Maths, Physics and Chemistry. 
+The marks can be floating values. The user enters some integer N 
+followed by the names and marks for NN students. You are required to 
+save the record in a dictionary data type. The user then enters a student's name. 
+Output the average percentage marks obtained by that student, correct to two decimal places.
+
+Input Format:
+The first line contains the integer N, the number of students. 
+The next N lines contains the name and marks obtained by that student 
+separated by a space. The final line contains the name of a particular student previously listed.
+
+Output Format:
+Print one line: The average of the marks obtained by the particular student correct to 2 decimal places.
+
+Constraints 
+2 <= N <= 10 
+0 <= Marks <= 100
+
+Sample Input:
+
+3
+Krishna 67 68 69
+Arjun 70 98 63
+Malika 52 56 60
+Malika
+
+Sample Output:
+
+56.00
+"""
+
+import sys
+
+def query_records():
+    results = {}
+    num_students = int(raw_input())
+    for i in range(num_students):
+        info = raw_input()
+        results[info[:info.find(' ')]] = map(float, info[info.find(' ') + 1:].split(' '))
+    student = raw_input()
+    return "%0.2f" % ((sum(results[student]) + 0.0) / len(results[student]))
+         
+        
+        
+print query_records()
 
 
-class Solution(object):
-    def reverse(self, x):
-        """
-        :type x: int
-        :rtype: int
-        """
-        if x < 0:
-            return -self.reverse(-x)
 
-        result = 0
-        while x:
-            result = result * 10 + x % 10
-            x /= 10
-        return result if result <= 0x7fffffff else 0  # Handle overflow.
-
-    def reverse2(self, x):
-        """
-        :type x: int
-        :rtype: int
-        """
-        if x < 0:
-            x = int(str(x)[::-1][-1] + str(x)[::-1][:-1])
-        else:
-            x = int(str(x)[::-1])
-        x = 0 if abs(x) > 0x7FFFFFFF else x
-        return x
-
-    def reverse3(self, x):
-        """
-        :type x: int
-        :rtype: int
-        """
-        s = cmp(x, 0)
-        r = int(`s * x`[::-1])
-        return s * r * (r < 2 ** 31)
-
-
-if __name__ == "__main__":
-    print Solution().reverse(123)
-    print Solution().reverse(-321)
-    
-    
-    </code></pre>
+        </code></pre>
   </body>
 </html>		

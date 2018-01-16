@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <link href="prism.css" rel="stylesheet">
@@ -7,103 +7,82 @@
 	<script type="text/javascript" src="prism.js"></script>
 	
 	<pre class="language-python"><code>
-
+	
 
 
 """
-    Singly Linked List
-    ------------------
-    A linked list is a data structure consisting of a group of nodes which
-    together represent a sequence. Under the simplest form, each node is
-    composed of data and a reference (in other words, a link) to the next
-    node in the sequence; more complex variants add additional links. This
-    structure allows for efficient insertion or removal of elements from any
-    position in the sequence.
+You are given an array a of size N. The elements of the array are a[0], a[1], ... a[N-1], where each a[i] is either 0 or
+ 1. You can perform one transformation on the array: choose any two integers L and R, and flip all the elements between
+ (and including) the Lth and Rth bits. In other words L and R represent the left-most and the right-most index
+ demarcating the boundaries of the segment whose bits you will decided to flip. ('Flipping' a bit means, that a 0 is
+ transformed to a 1 and a 1 is transformed to a 0.)
 
-    Pseudo Code: https://en.wikipedia.org/wiki/Linked_list
+What is the maximum number of '1'-bits (indicated by S) which you can obtain in the final bit-string?
 """
 
 
-class Node:
 
-    def __init__(self, data=None, next=None):
-        self.data = data
-        self.next = next
-
-    def set_data(self, data):
-        self.data = data
-
-    def get_data(self):
-        return self.data
-
-    def set_next(self, next):
-        self.next = next
-
-    def get_next(self):
-        return self.next
+def bitFlip(cipher):
+    """
+    main solution function
 
 
-class SinglyLinkedList:
+    :type cipher: list
+    :param cipher: the cipher
+    """
+    if len(cipher) <= 2:
+        return len(cipher)
 
-    def __init__(self):
-        self.head = None
-        self.size = 0
+    cipher = [val if val == 1 else -1 for val in cipher]
 
-    def add(self, value):
-        """
-        Add element to list
+    # diff = [cipher[i+1]-cipher[i] for i in xrange(len(cipher)-1)]
+    maxl = 0
+    maxr = -1
+    min_sum = 1 << 31
 
-        Time Complexity:  O(N)
-        """
-        node = Node(value)
-        node.set_next(self.head)
-        self.head = node
-        self.size += 1
+    ssum = 0
+    l = 0
+    r = -1
 
-    def _search_node(self, value, remove=False):
-        current = self.head
-        previous = None
+    for ind, val in enumerate(cipher):
+        ssum += val
+        if ssum > 0:
+            l = ind + 1
+            r = ind
+            ssum = 0
 
-        while current:
-            if current.data == value:
-                break
-            else:
-                previous = current
-                current = current.next
+        if ssum < 0:
+            r = ind
 
-        if remove and current:
-            if previous is None:  # Head node
-                self.head = current.next
-            else:  # None head node
-                previous.set_next(current.next)
-            self.size -= 1
+        if min_sum > ssum:
+            min_sum = ssum
+            maxr, maxl = r, l
 
-        return current is not None
+    cipher = [val if val == 1 else 0 for val in cipher]
+    for i in xrange(maxl, maxr + 1):
+        cipher[i] ^= 1
 
-    def remove(self, value):
-        """
-        Remove element from list
+    return sum(cipher)
 
-        Time Complexity:  O(N)
-        """
 
-        return self._search_node(value, True)
+if __name__ == "__main__":
+    import sys
 
-    def search(self, value):
-        """
-        Search for value in list
+    f = open("1.in", "r")
+    # f = sys.stdin
+    N = int(f.readline().strip())
 
-        Time Complexity:  O(N)
-        """
-        return self._search_node(value)
-
-    def size(self):
-        """
-        Return size of list
-        """
-        return self.size
-        
-        
-      </code></pre>
+    cipher = []
+    for t in xrange(N):
+        # construct cipher
+        i = int(f.readline().strip())
+        cipher.append(i)
+        # solve
+    s = "%s\n" % (bitFlip(cipher))
+    print s,
+    
+    
+        </code></pre>
   </body>
-</html>		  
+</html>		
+    

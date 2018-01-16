@@ -5,77 +5,64 @@
   </head>
   <body style="background-color:white;" >
 	<script type="text/javascript" src="prism.js"></script>
-	
+
 	<pre class="language-python"><code>
-	
 
 
 
 
 
-"""
-Given a binary tree and a sum, determine if the tree has a root-to-leaf
-path such that adding up all the values along the path equals the given sum.
+# Sort Data
 
-For example:
-Given the below binary tree and sum = 22,
-              5
-             / \
-            4   8
-           /   / \
-          11  13  4
-         /  \      \
-        7    2      1
-return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
-"""
+# You are given data in a tabular format. The data contains N rows, and each row contains M space separated elements.
+# You can imagine the M items to be different attributes, (like height, weight, energy, etc.) and each of the N rows as an instance or a
+# sample.
+# Your task is to sort the table on the Kth attribute and print the final resulting table.
+# Note: If two attributes are the same for different rows, print the row that appeared first in the input.
 
+# Input Format
+# The first line contains N and M separated by a space. 
+# The next N lines each contain M elements. 
+# The last line contains K.
 
-def has_path_sum(root, sum):
-    """
-    :type root: TreeNode
-    :type sum: int
-    :rtype: bool
-    """
-    if not root:
-        return False
-    if not root.left and not root.right and root.val == sum:
-        return True
-    sum -= root.val
-    return has_path_sum(root.left, sum) or has_path_sum(root.right, sum)
+# Constraints
+# 1 <= N, M <= 1000
+# 0 <= K < M
+# Each element <= 1000
 
+# Output Format
+# Print the N lines of the sorted table. Each line should contain the space separated elements. Check the sample below for clarity.
 
-# DFS with stack
-def has_path_sum2(root, sum):
-    if not root:
-        return False
-    stack = [(root, root.val)]
-    while stack:
-        node, val = stack.pop()
-        if not node.left and not node.right:
-            if val == sum:
-                return True
-        if node.left:
-            stack.append((node.left, val+node.left.val))
-        if node.right:
-            stack.append((node.right, val+node.right.val))
-    return False
+# Sample Input
+# 5 3
+# 10 2 5
+# 7 1 0
+# 9 9 9
+# 1 23 12
+# 6 5 9
+# 1
+
+# Sample Output
+# 7 1 0
+# 10 2 5
+# 6 5 9
+# 9 9 9
+# 1 23 12
+
+# Explanation
+# The table is sorted on the second attribute shown as K = 1 because it's 0-indexed.
 
 
-# BFS with queue
-def has_path_sum3(root, sum):
-    if not root:
-        return False
-    queue = [(root, sum-root.val)]
-    while queue:
-        node, val = queue.pop(0)  # popleft
-        if not node.left and not node.right:
-            if val == 0:
-                return True
-        if node.left:
-            queue.append((node.left, val-node.left.val))
-        if node.right:
-            queue.append((node.right, val-node.right.val))
-    return False
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+NM = map(int, raw_input().split())
+a = [map(int, raw_input().split()) for i in range(NM[0])]
+K = int(raw_input())
+a.sort(key = lambda x: x[K])
+for i in a:
+    for j in i:
+        print j,
+    print
+    
     
     
       </code></pre>

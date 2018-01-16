@@ -5,67 +5,62 @@
   </head>
   <body style="background-color:white;" >
 	<script type="text/javascript" src="prism.js"></script>
-	
+
 	<pre class="language-python"><code>
-	
 
 
 
-"""
-Given a binary tree, find its maximum depth.
 
-The maximum depth is the number of nodes along the
-longest path from the root node down to the farthest leaf node.
-"""
+# Exceptions
+
+# Exceptions
+# Errors detected during execution are called exceptions.
+
+# Examples:
+
+# ZeroDivisionError 
+# This error is raised when the second argument of a division or modulo operation is zero.
+
+# ValueError 
+# This error is raised when a built-in operation or function receives an argument that has the right type but an inappropriate value.
+
+# Handling Exceptions
+# The statements try and except can be used to handle selected exceptions. A try statement may have more than one except clause to
+# specify handlers for different exceptions.
+
+# Output
+# Error Code: integer division or modulo by zero
+
+# Task
+# You are given two values a and b. 
+# Perform integer division and print a/b.
+
+# Input Format
+# The first line contains T, the number of test cases. 
+# The next T lines each contain the space separated values of a and b.
+
+# Constraints
+# 0 < T < 10
+
+# Output Format
+# Print the value of a/b. 
+# In the case of ZeroDivisionError or ValueError, print the error code.
 
 
-class Node():
-    def __init__(self, val = 0):
-        self.val = val
-        self.left = None
-        self.right = None
-
-# def max_height(root):
-    # if not root:
-        # return 0
-    # return max(maxDepth(root.left), maxDepth(root.right)) + 1
-
-# iterative
-def max_height(root):
-    if not root:
-        return 0
-    height = 0
-    queue = [root]
-    while queue:
-        height += 1
-        level = []
-        while queue:
-            node = queue.pop(0)
-            if node.left:
-                level.append(node.left)
-            if node.right:
-                level.append(node.right)
-        queue = level
-    return height
-
-def print_tree(root):
-    if root:
-        print(root.val)
-        print_tree(root.left)
-        print_tree(root.right)
-
-tree = Node(10)
-tree.left = Node(12)
-tree.right = Node(15)
-tree.left.left  = Node(25)
-tree.left.left.right  = Node(100)
-tree.left.right = Node(30)
-tree.right.left = Node(36)
-
-height = max_height(tree)
-print_tree(tree)
-print("height:", height)
-
-</code></pre>
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+N = int(raw_input())
+a = []
+for i in range(N):
+    a.append(raw_input().split())
+for j in range(len(a)):
+    try:
+        print int(a[j][0])//int(a[j][1])
+    except ZeroDivisionError as e:
+        print "Error Code:", e
+    except ValueError as f:
+        print "Error Code:", f
+        
+        
+      </code></pre>
   </body>
-</html>		
+</html>		    

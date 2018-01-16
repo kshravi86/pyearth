@@ -1,111 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link href="prism.css" rel="stylesheet">
-</head>
-<body style="background-color:white;" >
-<script type="text/javascript" src="prism.js"></script>
+  <head>
+    <link href="prism.css" rel="stylesheet">
+  </head>
+  <body style="background-color:white;" >
+	<script type="text/javascript" src="prism.js"></script>
 
-<pre class="language-java"><code>
-
-
+	<pre class="language-python"><code>
 
 
+		
 
 
-/* Java Stack
-
-Problem Statement
-
-In computer science, a stack or LIFO (last in, first out) is an abstract data type that serves as a 
-collection of elements, with two principal operations: push, which adds an element to the collection, and 
-pop, which removes the last element that was added.(Wikipedia)
-A string containing only parentheses is balanced if the following is true: 1. if it is an empty string 2. 
-if A and B are correct, AB is correct, 3. if A is correct, (A) and {A} and [A] are also correct.
-
-Examples of some correctly balanced strings are: "{}()", "[{()}]", "({()})" 
-
-Examples of some unbalanced strings are: "{}(", "({)}", "[[", "}{" etc.
-
-Given a string, determine if it is balanced or not.
-
-Input Format
-
-There will be multiple lines in the input file, each having a single non-empty string. You should read input till end-of-file.
-
-The part of the code that handles input operation is already provided in the editor.
-
-Output Format
-
-For each case, print 'true' if the string is balanced, 'false' otherwise.
-
-Sample Input
-
-{}()
-({()})
-{}(
-[]
-
-Sample Output
-
-true
-true
-false
-true
-*/
-
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-import java.util.ArrayList;
-
-public class JavaStack {
-
-    static boolean isBallanced(String paranString)
-    {
-        List<String>closingParan =  Arrays.asList("}", ")", "]");
-        boolean isBallanced = true;
-        ArrayList<String> stack = new ArrayList<String>();
-        if(paranString.length()>0){
-            for(int i = 0;i<paranString.length();i++){
-                String paran = paranString.substring(i,i+1); 
-                if(stack.size() == 0 && closingParan.contains(paran)){
-                    isBallanced=false;
-                    break;
-                }else{
-                    if(paran.equals("{") || paran.equals("(") || paran.equals("[")){
-                        stack.add(paran);
-                    }else{
-                        String stackParan = stack.get(stack.size()-1);
-                        if((stackParan.equals("{") && paran.equals("}")) || (stackParan.equals("(") && paran.equals(")") || (stackParan.equals("[") && paran.equals("]")))) {
-                            stack.remove(stack.size()-1);
-                        }else{
-                            isBallanced = false;
-                            break;
-                        }
-                    }
-                }
-            }  
-        }
-        if(stack.size()>0) isBallanced = false;
-        return isBallanced;    
-    }
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        while(sc.hasNext()){
-            if(isBallanced(sc.nextLine())){
-                System.out.println("true");
-            }else{
-                System.out.println("false");
-            }       
-        }
-        
-    }
-}
 
 
-        </code></pre>
+# Shape and Reshape
+
+# shape
+
+# The shape tool gives a tuple of array dimensions and can be used to change the dimensions of an array.
+
+# (a). Using shape to get array dimensions
+
+# import numpy
+
+# my__1D_array = numpy.array([1, 2, 3, 4, 5])
+# print my_1D_array.shape     #(5,) -> 5 rows and 0 columns
+
+# my__2D_array = numpy.array([[1, 2],[3, 4],[6,5]])
+# print my_2D_array.shape     #(3, 2) -> 3 rows and 2 columns 
+
+# (b). Using shape to change array dimensions
+
+# import numpy
+
+# change_array = numpy.array([1,2,3,4,5,6])
+# change_array.shape = (3, 2)
+# print change_array      
+
+#Output
+# [[1 2]
+# [3 4]
+# [5 6]]
+
+# reshape
+# The reshape tool gives a new shape to an array without changing its data. It creates a new array and does not modify the original
+# array itself.
+
+# import numpy
+
+# my_array = numpy.array([1,2,3,4,5,6])
+# print numpy.reshape(my_array,(3,2))
+
+#Output
+# [[1 2]
+# [3 4]
+# [5 6]]
+
+# Task
+
+# You are given a space separated list of nine integers. Your task is to convert this list into a 3X3 NumPy array.
+
+# Input Format
+# A single line of input containing 9 space separated integers.
+
+# Output Format
+# Print the 3X3 NumPy array.
+
+import numpy
+
+lis = numpy.array(raw_input().split(' '), int)
+print lis.reshape(3, 3)
+
+</code></pre>
   </body>
 </html>		

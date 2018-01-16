@@ -10,53 +10,57 @@
 	
 
 
-# Time:  O(logn)
-# Space: O(1)
 
-# Find the nth digit of the infinite integer sequence
-# 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...
-#
-# Note:
-# n is positive and will fit within the range of a 32-bit signed integer (n < 231).
-#
-# Example 1:
-#
-# Input:
-# 3
-#
-# Output:
-# 3
-# Example 2:
-#
-# Input:
-# 11
-#
-# Output:
-# 0
-#
-# Explanation:
-# The 11th digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
-# ... is a 0, which is part of the number 10.
 
-class Solution(object):
-    def findNthDigit(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        digit_len = 1
-        while n > digit_len * 9 * (10 ** (digit_len-1)):
-            n -= digit_len  * 9 * (10 ** (digit_len-1))
-            digit_len += 1
 
-        num = 10 ** (digit_len-1) + (n-1)/digit_len
+"""
+Given a time in AM/PM format, convert it to military (24-hour) time.
 
-        nth_digit = num / (10 ** ((digit_len-1) - ((n-1)%digit_len)))
-        nth_digit %= 10
+Note: Midnight is 12:00:00AM on a 12-hour clock and 00:00:00 on a 24-hour clock. 
+Noon is 12:00:00PM on a 12-hour clock and 12:00:00 on a 24-hour clock.
 
-        return nth_digit
-        
-        
+Input Format:
+
+A time in 12-hour clock format (i.e.: hh:mm:ssAM or hh:mm:ssPM), where 01≤hh≤1201≤hh≤12.
+
+Output Format:
+
+Convert and print the given time in 24-hour format, where 0 <= h <= 23
+
+Sample Input:
+
+07:05:45PM
+
+Sample Output:
+
+19:05:45
+"""
+
+
+import sys
+
+def format_input():
+    return sys.stdin.read()
+
+
+def convert_time(t):
+    converted_time = ''
+    if t[8] == 'P' and int(t[:2]) <= 12:
+        if t[:2] == '12':
+            converted_time += t[:8]
+        else:
+            converted_time += (str(12 + int(t[:2])) + t[2:8])
+    else:
+        if t[:2] == '12':
+            converted_time += ('00' + t[2:8])
+        else:
+            converted_time += t[:8]
+    return converted_time
+
+print convert_time(format_input())
+
+
+   
         </code></pre>
   </body>
 </html>		

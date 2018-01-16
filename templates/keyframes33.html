@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,63 +10,50 @@
 	<pre class="language-python"><code>
 	
 
-
+# -*- coding: utf-8 -*-
 """
-    Merge Sort
-    ----------
-    Uses divide and conquer to recursively divide and sort the list
+Problem Statement
 
-    Time Complexity: O(n log n)
-
-    Space Complexity: O(n) Auxiliary
-
-    Stable: Yes
-
-    Psuedo Code: CLRS. Introduction to Algorithms. 3rd ed.
-
+You are given two strings, A and B. Find if there is a substring that appears in both A and B.
 """
 
 
-def merge(left, right):
-    """
-    Takes two sorted sub lists and merges them in to a single sorted sub list
-    and returns it.
 
-    :param left: A list of sorted integers
-    :param right: A list of sorted integers
-    :rtype: A list of sorted integers
-    """
-    result = []
-    n, m = 0, 0
-    while n < len(left) and m < len(right):
-        if left[n] <= right[m]:
-            result.append(left[n])
-            n += 1
+class Solution(object):
+    def solve(self, cipher):
+        """
+        main solution function
+        :param cipher: the cipher
+        """
+        a = map(set, cipher)
+        ret = a[0].intersection(a[1])
+        if len(ret) > 0:
+            return "YES"
         else:
-            result.append(right[m])
-            m += 1
-
-    result += left[n:]
-    result += right[m:]
-    return result
+            return "NO"
 
 
-def sort(seq):
-    """
-    Takes a list of integers and sorts them in ascending order. This sorted
-    list is then returned.
+if __name__ == "__main__":
+    import sys
 
-    :param seq: A list of integers
-    :rtype: A list of sorted integers
-    """
-    if len(seq) <= 1:
-        return seq
+    f = open("0.in", "r")
+    # f = sys.stdin
+    solution = Solution()
+    testcases = int(f.readline().strip())
 
-    middle = int(len(seq) / 2)
-    left = sort(seq[:middle])
-    right = sort(seq[middle:])
-    return merge(left, right)
-    
-    </code></pre>
+    for t in xrange(testcases):
+        # construct cipher
+        cipher = []
+        cipher.append(f.readline().strip())
+        cipher.append(f.readline().strip())
+        # solve
+        s = "%s\n" % (solution.solve(cipher))
+        print s,
+        
+        
+        
+        </code></pre>
   </body>
 </html>		
+    
+        
